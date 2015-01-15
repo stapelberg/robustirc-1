@@ -3,7 +3,7 @@ package raft_logstore
 import (
 	"bytes"
 	"encoding/binary"
-	"encoding/gob"
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -93,7 +93,7 @@ func NewOneFile(dir string) (s *OneFile, err error) {
 			break
 		}
 		var elogs []*raft.Log
-		if err := gob.NewDecoder(bytes.NewReader(buf[4 : l+4])).Decode(&elogs); err != nil {
+		if err := json.NewDecoder(bytes.NewReader(buf[4 : l+4])).Decode(&elogs); err != nil {
 			s.file.Seek(int64(-len(buf)), 1)
 			break
 		}
@@ -183,7 +183,7 @@ func (s *OneFile) StoreLogs(logs []*raft.Log) error {
 	b := bufPool.Get().(*bytes.Buffer)
 	defer bufPool.Put(b)
 
-	if err := gob.NewEncoder(b).Encode(logs); err != nil {
+	if err := json.NewEncoder(b).Encode(logs); err != nil {
 		log.Printf("Could not encode logs: %v", err)
 		return err
 	}
@@ -238,7 +238,7 @@ func (s *OneFile) DeleteRange(min, max uint64) error {
 	if len(elogs) > 0 {
 		b := bufPool.Get().(*bytes.Buffer)
 		defer bufPool.Put(b)
-		if err := gob.NewEncoder(b).Encode(elogs); err != nil {
+		if err := json.NewEncoder(b).Encode(elogs); err != nil {
 			return err
 		}
 		if err := binary.Write(f, binary.LittleEndian, uint32(b.Len())); err != nil {
