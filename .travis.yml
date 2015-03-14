@@ -19,9 +19,8 @@ install:
 script:
   - go test ./...
   # Check whether files are syntactically correct.
-  - echo $(find . -name "*.go" | tr '\n' ' ')
   - gofmt -l $(find . -name "*.go" | tr '\n' ' ') >/dev/null
   # Check whether files were not gofmt'ed.
-  - "[ $(gofmt -l $(find . -name '*.go' | tr '\\n' ' ') | wc -l) -eq 0 ] || (echo 'gofmt was not run on these files:'; gofmt -l $(find . -name '*.go' | tr '\\n' ' ') 2>/dev/null; false)"
+  - "gosrc=$(find . -name '*.go' | tr '\\n' ' ') | wc -l) [ $(gofmt -l $gosrc | wc -l) -eq 0 ] || (echo 'gofmt was not run on these files:'; gofmt -l $gosrc 2>/dev/null; false)"
 
 after_failure: head -500 /tmp/robustirc*/stderr.txt
