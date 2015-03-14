@@ -231,7 +231,7 @@ func (l *localnet) StartIRCServer(singlenode bool) (*exec.Cmd, string, string) {
 			log.Fatal(err)
 		}
 		log.Printf("stderr = %s\n", string(b))
-		log.Fatal("robustirc was not reachable via HTTP after 5s")
+		log.Fatal("robustirc was not reachable via HTTP after 5s. log = %s", string(b))
 	}
 	l.Ports = append(l.Ports, l.randomPort)
 
