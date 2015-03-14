@@ -13,9 +13,9 @@ import (
 
 	prometheus_text "github.com/prometheus/client_golang/text"
 	"github.com/robustirc/bridge/robustsession"
-	"github.com/robustirc/robustirc/localnet"
 	"github.com/robustirc/robustirc/types"
 	"github.com/robustirc/robustirc/util"
+	"github.com/stapelberg/robustirc-1/localnet"
 )
 
 func TestMessageOfDeath(t *testing.T) {
