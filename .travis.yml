@@ -1,9 +1,9 @@
 language: go
 
-go:
-  - tip
+#go:
+#  - 1.4
 
 # Need to specify this explicitly because we have a Makefile.
-install: go get github.com/robustirc/robustirc/cmd/... github.com/robustirc/robustirc
+install: go get github.com/robustirc/robustirc/cmd/... github.com/robustirc/robustirc github.com/robustirc/bridge/robustirc-bridge
 
 script: go test github.com/robustirc/robustirc/...
