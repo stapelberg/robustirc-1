@@ -37,6 +37,9 @@ func TestMessageOfDeath(t *testing.T) {
 
 	for i := 0; i < 3; i++ {
 		cmd, tempdir, addr := l.StartIRCServer(i == 0)
+		if i == 0 {
+			time.Sleep(5 * time.Second)
+		}
 		wg.Add(1)
 		go func(cmd *exec.Cmd, tempdir string, addr string) {
 			defer wg.Done()
