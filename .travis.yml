@@ -8,9 +8,10 @@ language: go
 # Need to specify this explicitly because we have a Makefile.
 # TODO: remove last one
 install:
-  - go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
-# Hotfix. TODO: send PR
+  # Hotfix. TODO: send PR
+  - go get -d github.com/armon/go-metrics
   - sed -i 's/^\s*return \(strings.Replace.*\)/return strings.Replace(\1, "-", "_", -1)/g' $HOME/gopath/src/github.com/armon/go-metrics/prometheus.go
+  - go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
 
 script: go test ./...
 
