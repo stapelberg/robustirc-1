@@ -131,11 +131,7 @@ func TestMessageOfDeath(t *testing.T) {
 				!strings.HasSuffix(msg, " JOIN :#mod") {
 				continue
 			}
-			select {
-			case foundjoin <- true:
-			default:
-				t.Errorf("Found JOIN too early (channel write blocks)")
-			}
+			foundjoin <- true
 		}
 	}()
 	go func() {
