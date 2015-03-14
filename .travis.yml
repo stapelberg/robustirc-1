@@ -16,6 +16,11 @@ install:
   - sed -i 's/^\s*return \(strings.Replace.*\)/return strings.Replace(\1, "-", "_", -1)/g' $HOME/gopath/src/github.com/armon/go-metrics/prometheus.go
   - go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
 
-script: go test ./...
+script:
+  - go test ./...
+  # Check whether files are syntactically correct.
+  - gofmt -l **/*.go >/dev/null
+  # Check whether files were not gofmt'ed.
+  - [ $(gofmt -l **/*.go | wc -l) -eq 0 ] || (echo 'gofmt was not run on these files:'; gofmt -l **/*.go 2>/dev/null; false)
 
 after_failure: head -500 /tmp/robustirc*/stderr.txt
