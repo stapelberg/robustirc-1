@@ -19,8 +19,8 @@ install:
 script:
   - go test ./...
   # Check whether files are syntactically correct.
-  - gofmt -l **/*.go >/dev/null
+  - gofmt -l *.go >/dev/null
   # Check whether files were not gofmt'ed.
-  - "[ $(gofmt -l **/*.go | wc -l) -eq 0 ] || (echo 'gofmt was not run on these files:'; gofmt -l **/*.go 2>/dev/null; false)"
+  - "[ $(gofmt -l *.go | wc -l) -eq 0 ] || (echo 'gofmt was not run on these files:'; gofmt -l *.go 2>/dev/null; false)"
 
 after_failure: head -500 /tmp/robustirc*/stderr.txt
