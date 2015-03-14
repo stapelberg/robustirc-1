@@ -10,7 +10,7 @@ language: go
 install:
   - go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
 # Hotfix. TODO: send PR
-  - sed -i 's/^\s*return \(strings.Replace.*\)/return strings.Replace(\1, "-", "_", -1)/g' $GOPATH/src/github.com/armon/go-metrics/prometheus.go
+  - sed -i 's/^\s*return \(strings.Replace.*\)/return strings.Replace(\1, "-", "_", -1)/g' $HOME/gopath/src/github.com/armon/go-metrics/prometheus.go
 
 script: go test ./...
 
