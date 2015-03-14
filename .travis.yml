@@ -10,3 +10,5 @@ language: go
 install: go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
 
 script: go test ./...
+
+after_failure: head -500 /tmp/robustirc*/stderr.txt
