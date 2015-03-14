@@ -56,7 +56,7 @@ var (
 		false,
 		"Print version and exit")
 
-	singleNode = flag.Bool("singlenode",
+singleNode = flag.Bool("singlenode",
 		false,
 		"Become a raft leader without any followers. Set to true if and only if starting the first node for the first time.")
 	join = flag.String("join",
