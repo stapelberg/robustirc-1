@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - tip
+
+# Need to specify this explicitly because we have a Makefile.
+install: go get ./...
+
+script: go test ./...
