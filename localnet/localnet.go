@@ -226,6 +226,11 @@ func (l *localnet) StartIRCServer(singlenode bool) (*exec.Cmd, string, string) {
 	if !running {
 		cmd.Process.Kill()
 		// TODO(secure): retry on a different port.
+		b, err := ioutil.ReadFile(filepath.Join(tempdir, "stderr.txt"))
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Printf("stderr = %s\n", string(b))
 		log.Fatal("robustirc was not reachable via HTTP after 5s")
 	}
 	l.Ports = append(l.Ports, l.randomPort)
