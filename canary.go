@@ -33,7 +33,7 @@ func privacyFilterMsgs(messages []*irc.Message) []*irc.Message {
 		output[idx] = privacyFilterMsg(message)
 	}
 	return output
-
+}
 
 func messagesString(messages []*irc.Message) string {
 	output := make([]string, len(messages))
