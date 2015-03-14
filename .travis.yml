@@ -6,6 +6,7 @@ language: go
 #  - 1.4
 
 # Need to specify this explicitly because we have a Makefile.
-install: go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge
+# TODO: remove last one
+install: go get ./cmd/... ./ github.com/robustirc/bridge/robustirc-bridge github.com/robustirc/robustirc
 
 script: go test ./...
