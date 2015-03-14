@@ -5,6 +5,9 @@ language: go
 #go:
 #  - 1.4
 
+env:
+  - GOMAXPROCS=2
+
 # Need to specify this explicitly because we have a Makefile.
 # TODO: remove last one
 install:
